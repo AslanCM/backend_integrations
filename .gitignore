@@ -1,0 +1,13 @@
+# Environment variables
+.env
+.env.*
+**/.env
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Lock files
+package-lock.json
+**/package-lock.json
+customer-api/package-lock.json
