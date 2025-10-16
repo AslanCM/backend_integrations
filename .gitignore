@@ -10,4 +10,3 @@ node_modules/
 # Lock files
 package-lock.json
 **/package-lock.json
-customer-api/package-lock.json
