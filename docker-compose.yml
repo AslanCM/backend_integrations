@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT_EXTERNAL}:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql
+
+  customers-api:
+    build:
+      context: .
+      dockerfile: ./customers-api/Dockerfile
+    container_name: customers_api
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_DATABASE}
+      PORT: 3001
+    depends_on:
+      - db
+
+  # orders-api:
+  #   environment:
+  #     DB_HOST: db
+  #     DB_USER: ${DB_USER}
+  #     DB_PASSWORD: ${DB_PASSWORD}
+  #     DB_NAME: ${DB_DATABASE}
+  #     PORT: 3002
+  #   depends_on:
+  #     - db
+  #     - customers-api
+
+volumes:
+  mysql-data:

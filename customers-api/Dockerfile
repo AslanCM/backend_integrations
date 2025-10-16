@@ -1,22 +1,27 @@
 FROM node:22-alpine AS builder
 WORKDIR /usr/src/app
+
 COPY package*.json ./
+
+COPY libs ./libs
+
+COPY customers-api ./customers-api
+
 RUN npm install
-COPY . .
 
 FROM node:22-alpine
 WORKDIR /usr/src/app
 
-RUN addgroup -S node && adduser -S node -G node
-
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/package.json ./
-COPY --from=builder /usr/src/app/src ./src
+COPY --from=builder /usr/src/app/libs ./libs
+COPY --from=builder /usr/src/app/customers-api ./customers-api
 
-RUN chown -R node:node /usr/src/app
+WORKDIR /usr/src/app/customers-api
 
-USER node
+RUN adduser -D nonroot
 
+USER nonroot
 
 EXPOSE 3001
 CMD [ "npm", "start" ]

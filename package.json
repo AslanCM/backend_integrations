@@ -1,0 +1,10 @@
+{
+  "name": "backend_integrations_monorepo",
+  "private": true,
+  "workspaces": [
+    "customers-api",
+    "orders-api",
+    "lambda-orchestrator",
+    "libs/*"
+  ]
+}
