@@ -70,7 +70,7 @@ Este repositorio contiene la solución a la prueba técnica para Backend Develop
 
 ## 🧪 Cómo Probar los Endpoints
 
-### 1. Iniciar Sesión (Obtener Token)
+### 1. Iniciar Sesión (Obtener Token) No obligatorio ni necesario
 
 Realiza una petición `POST` a `http://localhost:3001/api/v1/auth/login` con el usuario admin creado en la semilla.
 
