@@ -1,0 +1,61 @@
+{
+  "/Users/aslancaicdo/Documents/projects/backend jelou ai/lambda-orchestrator/serverless.yml": {
+    "versionFramework": "4.21.1",
+    "servicePath": "/Users/aslancaicdo/Documents/projects/backend jelou ai/lambda-orchestrator/serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "aslan-caicedo",
+      "app": "lambda-orchestrator",
+      "service": "lambda-orchestrator",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "environment": {
+          "CUSTOMERS_API_URL": "http://localhost:3001/api/v1",
+          "ORDERS_API_URL": "http://localhost:3002/api/v1",
+          "SERVICE_TOKEN": "<REDACTED>"
+        }
+      },
+      "functions": {
+        "orchestrator": {
+          "handler": "handler.main",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/orchestrator/create-and-confirm-order",
+                "method": "post"
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ]
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "environment": {
+        "CUSTOMERS_API_URL": "http://localhost:3001/api/v1",
+        "ORDERS_API_URL": "http://localhost:3002/api/v1",
+        "SERVICE_TOKEN": "<REDACTED>"
+      }
+    },
+    "error": {
+      "message": "You are not a member of the Org \"aslan-caicedo\". Verify the \"org\" in your Service configuration (e.g. serverless.yml) or that you're providing manually is one your User Account or License Key has access to. Lastly, check the .serverlessrc file in the home directory of your machine to better understand what user account or License Key you are currently using. You can run \"serverless login\" to change the user account or License Key you are using.",
+      "stack": "Error: You are not a member of the Org \"aslan-caicedo\". Verify the \"org\" in your Service configuration (e.g. serverless.yml) or that you're providing manually is one your User Account or License Key has access to. Lastly, check the .serverlessrc file in the home directory of your machine to better understand what user account or License Key you are currently using. You can run \"serverless login\" to change the user account or License Key you are using.\n    at Authentication.getAuthenticatedData (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:710:3220)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Authentication.authenticate (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:710:22530)\n    at async TraditionalRunner.resolveVariablesAndAuthenticate (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:717:1266)\n    at async TraditionalRunner.run (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:1336:27914)\n    at async route (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:1511:2878)\n    at async Object.run (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:1512:3755)\n    at async run2 (file:///Users/aslancaicdo/.serverless/releases/4.21.1/package/dist/sf-core.js:1512:4909)"
+    },
+    "serviceRawFile": "org: aslan-caicedo\napp: lambda-orchestrator\n\nservice: lambda-orchestrator\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  environment:\n    CUSTOMERS_API_URL: http://localhost:3001/api/v1\n    ORDERS_API_URL: http://localhost:3002/api/v1\n    SERVICE_TOKEN: 0199f133-bcae-76c5-b52c-a62a51b22635\n\nfunctions:\n  orchestrator:\n    handler: handler.main\n    events:\n      - httpApi:\n          path: /orchestrator/create-and-confirm-order\n          method: post\nplugins:\n  - serverless-offline\n",
+    "command": [
+      "offline",
+      "start"
+    ],
+    "options": {},
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

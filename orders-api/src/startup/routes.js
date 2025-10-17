@@ -7,14 +7,18 @@ const { validateToken } = require("../middleware/tokenValidator");
 const responseFormatter = require("../middleware/responseFormatter");
 
 const healthcheckRouter = require("../components/healthcheck");
-const createCustomerRouter = require("../components/createCustomers");
-const getCustomersRouter = require("../components/getCustomers");
-const deleteCustomersRouter = require("../components/deleteCustomers");
-const loginRouter = require("../components/login");
+const postCreateProductRouter = require("../components/products/post");
+const patchUpdateProductRouter = require("../components/products/patch");
+const getProductsRouter = require("../components/products/get");
+const createOrdersRouter = require("../components/createOrders");
+const confirmOrderRouter = require("../components/confirmOrder");
+
 module.exports = (app) => {
   const logFormat = "json";
   const logEnable = true;
-  const apiPath = "/customers";
+
+  const ordersPath = "/orders";
+  const productsPath = "/products";
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
@@ -27,14 +31,13 @@ module.exports = (app) => {
 
   app.use(healthcheckRouter);
 
-  app.use(apiPath, createCustomerRouter);
-  app.use(apiPath, getCustomersRouter);
-  app.use(apiPath, deleteCustomersRouter);
-  app.use(apiPath, loginRouter);
+  // products routes
+  app.use(productsPath, postCreateProductRouter);
+  app.use(productsPath, patchUpdateProductRouter);
+  app.use(productsPath, getProductsRouter);
 
-  const internalRoutes = "/internal";
-  app.use(validateToken);
-  app.use(`${internalRoutes}/customers`, getCustomersRouter);
+  app.use(ordersPath, createOrdersRouter);
+  app.use(ordersPath, confirmOrderRouter);
 
   app.use(notFoundMiddleware);
   app.use(errorMiddleware);

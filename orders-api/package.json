@@ -1,8 +1,11 @@
 {
-  "name": "customers-api",
+  "name": "orders-api",
   "version": "1.0.0",
-  "description": "customers-api to handle user related matters",
+  "description": "orders-api to handle orders related matters",
   "homepage": "https://github.com/AslanCM/backend_integrations#readme",
+  "bugs": {
+    "url": "https://github.com/AslanCM/backend_integrations/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AslanCM/backend_integrations.git"
@@ -21,12 +24,13 @@
     "dbConection-lib": "*",
     "dotenv": "17.2.3",
     "express": "5.1.0",
-    "express-mung": "0.5.1",
+    "express-mung": "^0.5.1",
     "helmet": "^8.1.0",
     "joi": "18.0.1",
     "jsonwebtoken": "9.0.2",
     "lodash": "4.17.21",
     "mysql2": "3.15.2",
+    "node-fetch": "2.7.0",
     "uuid": "13.0.0",
     "winston": "3.18.3"
   },

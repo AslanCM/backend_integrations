@@ -1,22 +1,12 @@
 SET NAMES utf8mb4;
 
-CREATE TABLE `user_types` (
-  `id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_user_types_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 CREATE TABLE `users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `password_hash` VARCHAR(255) NOT NULL,
-  `user_type_id` TINYINT UNSIGNED NOT NULL,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_users_email` (`email`),
-  KEY `idx_users_user_type_id` (`user_type_id`),
-  CONSTRAINT `fk_users_user_type_id` FOREIGN KEY (`user_type_id`) REFERENCES `user_types` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  UNIQUE KEY `uk_users_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `customers` (
@@ -24,12 +14,10 @@ CREATE TABLE `customers` (
   `name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(50) NULL,
-  `user_id` INT UNSIGNED NULL, -- Columna para vincular a un usuario (opcional)
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_customers_email` (`email`),
-  UNIQUE KEY `uk_customers_user_id` (`user_id`),
-  CONSTRAINT `fk_customers_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  UNIQUE KEY `uk_customers_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `products` (

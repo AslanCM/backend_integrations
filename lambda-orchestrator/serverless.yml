@@ -1,0 +1,19 @@
+service: lambda-orchestrator
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    CUSTOMERS_API_URL: http://localhost:3001
+    ORDERS_API_URL: http://0.0.0.0:3002
+    SERVICE_TOKEN: 0199f133-bcae-76c5-b52c-a62a51b22635
+
+functions:
+  orchestrator:
+    handler: handler.main
+    events:
+      - httpApi:
+          path: /orchestrator/create-and-confirm-order
+          method: post
+plugins:
+  - serverless-offline

@@ -1,0 +1,15 @@
+{
+  "name": "lambda-orchestrator",
+  "version": "1.0.0",
+  "scripts": {
+    "offline": "serverless offline start",
+    "deploy": "serverless deploy"
+  },
+  "dependencies": {
+    "node-fetch": "2.7.0"
+  },
+  "devDependencies": {
+    "serverless": "4.4.7",
+    "serverless-offline": "14.3.2"
+  }
+}
