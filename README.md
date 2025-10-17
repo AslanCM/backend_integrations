@@ -82,3 +82,50 @@ curl -X POST http://localhost:3001/api/v1/auth/login \
     "email": "admin@b2b.com",
     "password": "admin123@"
 }'
+
+
+Global ENVs
+
+DB_ROOT_PASSWORD=JelouAI123Test
+DB_DATABASE=handle_orders
+DB_USER=JeloiAI
+DB_PASSWORD=JelouAI123*4
+DB_PORT_EXTERNAL=3307
+
+#Globals
+JWT_SECRET=secret_key_test
+SERVICE_TOKEN=0199f133-bcae-76c5-b52c-a62a51b22635
+
+#Custmer service
+
+
+#Orders service
+
+
+ ** Customers-api ENVs**
+  DB_USER=JeloiAI
+  DB_PASSWORD=JelouAI123*4
+  DB_NAME=handle_orders
+  DB_PORT=3307
+  PORT=3001
+  JWT_SECRET=secret_key_test
+  SERVICE_TOKEN=0199f133-bcae-76c5-b52c-a62a51b22635
+
+
+** Orders-api ENVs**
+  DB_USER=JeloiAI
+  DB_PASSWORD=JelouAI123*4
+  DB_NAME=handle_orders
+  DB_PORT=3307
+  PORT=3002
+  JWT_SECRET=secret_key_test
+  # CUSTOMERS_API_URL=http://customers-api:3001
+  CUSTOMERS_API_URL=http://localhost:3001
+  SERVICE_TOKEN=0199f133-bcae-76c5-b52c-a62a51b22635
+
+  ** Orchestrator ENVs**
+  CUSTOMERS_API_URL=http://localhost:3001
+  ORDERS_API_URL: http://0.0.0.0:3002
+  SERVICE_TOKEN=0199f133-bcae-76c5-b52c-a62a51b22635
+
+ * ** Los archivos en la carpeta postman pueden importarse y así obtener los ejemplos de los request** *
