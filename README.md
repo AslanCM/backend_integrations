@@ -8,7 +8,7 @@ Este repositorio contiene la solución a la prueba técnica para Backend Develop
 * **Microservicios** en Node.js y Express (`customers-api`, `orders-api`).
 * **Orquestación Serverless** con AWS Lambda (`lambda-orchestrator`).
 * Base de datos **MySQL**, todo containerizado con **Docker Compose**.
-* Autenticación **JWT** para operadores.
+* Autenticación **JWT** para operadores. # no implementada solo escrita
 * Comunicación segura entre servicios con un **Token de Servicio**.
 * **Idempotencia** en la confirmación de órdenes.
 * **Transacciones** de base de datos para consistencia de datos.
@@ -50,6 +50,23 @@ Este repositorio contiene la solución a la prueba técnica para Backend Develop
     docker-compose ps
     ```
     Deberías ver los contenedores `customers-api`, `orders-api` y `mysql_db` en estado `up`.
+
+6. **Levantar la Lambda con Serverless Framework**
+    
+    Desde la raíz del proyecto, dirigirse a lambda-orchestrator folder:
+    ```bash
+    cd ./lambda-orchestrator/
+    ```
+
+7.  **Levantar la Lambda con Serverless Framework**
+    
+    Luego correr
+    ```bash
+      npm run offline
+     ```
+
+    La lambda estará disponible en `http://localhost:3000`
+    
 
 ## 🧪 Cómo Probar los Endpoints
 

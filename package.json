@@ -6,5 +6,12 @@
     "orders-api",
     "lambda-orchestrator",
     "libs/*"
-  ]
+  ],
+  "scripts": {
+    "lambda:offline": "npm run offline --workspace=lambda-orchestrator",
+    "lambda:deploy": "npm run deploy --workspace=lambda-orchestrator",
+    "docker:up": "docker-compose up -d --build",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  }
 }

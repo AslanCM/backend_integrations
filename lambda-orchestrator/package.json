@@ -9,7 +9,8 @@
     "node-fetch": "2.7.0"
   },
   "devDependencies": {
-    "serverless": "4.4.7",
-    "serverless-offline": "14.3.2"
+    "serverless": "^3.38.0",
+    "serverless-dotenv-plugin": "^4.0.2",
+    "serverless-offline": "^13.3.3"
   }
 }

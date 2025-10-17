@@ -13,6 +13,12 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d
       - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   customers-api:
     build:
@@ -27,8 +33,12 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_DATABASE}
       PORT: 3001
+      SERVICE_TOKEN: ${SERVICE_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: on-failure
 
   orders-api:
     build:
@@ -47,8 +57,11 @@ services:
       SERVICE_TOKEN: ${SERVICE_TOKEN}
       JWT_SECRET: ${JWT_SECRET}
     depends_on:
-      - db
-      - customers-api
+      db:
+        condition: service_healthy
+      customers-api:
+        condition: service_started
+    restart: on-failure
 
 volumes:
   mysql-data:

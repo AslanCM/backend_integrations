@@ -8,10 +8,6 @@ const handler = async (event) => {
     console.log('body', body);
     const { customer_id, items, idempotency_key, correlation_id } = body;
 
-    console.log('CUSTOMERS_API_URL', CUSTOMERS_API_URL);
-    console.log('ORDERS_API_URL', ORDERS_API_URL);
-    console.log('SERVICE_TOKEN', SERVICE_TOKEN);
-
     const customerRes = await fetch(`${CUSTOMERS_API_URL}/internal/customers/${customer_id}`, {
       headers: { 'Authorization': `Bearer ${SERVICE_TOKEN}` }
     });
